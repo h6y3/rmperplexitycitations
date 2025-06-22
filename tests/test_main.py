@@ -2,11 +2,12 @@
 """Tests for rmperplexitycitations"""
 
 import unittest
+
 from src.main import (
-    remove_citations,
-    remove_citation_sections,
-    remove_perplexity_branding,
     clean_markdown,
+    remove_citation_sections,
+    remove_citations,
+    remove_perplexity_branding,
 )
 
 
