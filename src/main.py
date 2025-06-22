@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
-"""
-rmperplexitycitations - Remove citations and URLs from Perplexity.ai markdown content
-"""
+"""rmperplexitycitations - Remove citations and URLs from Perplexity.ai markdown."""
 
 import re
 import sys
-from pathlib import Path
 from typing import Optional
 
 import click
@@ -102,7 +99,8 @@ def clean_markdown(text: str) -> str:
 def read_clipboard() -> str:
     """Read content from clipboard."""
     try:
-        return pyperclip.paste()
+        content = pyperclip.paste()
+        return content if content is not None else ""
     except Exception as e:
         click.echo(f"Error reading from clipboard: {e}", err=True)
         sys.exit(1)
@@ -175,7 +173,6 @@ def main(
     By default, reads from clipboard and writes back to clipboard.
     Use flags to specify file input/output combinations.
     """
-
     if input_file and clipboard_input:
         click.echo(
             "Error: Cannot specify both --input-file and --clipboard-input", err=True

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests for rmperplexitycitations"""
+"""Tests for rmperplexitycitations."""
 
 import unittest
 
@@ -12,23 +12,24 @@ from src.main import (
 
 
 class TestCitationRemoval(unittest.TestCase):
+    """Test suite for citation removal functionality."""
 
     def test_remove_single_citations(self):
-        """Test removal of single citations like [1], [2]"""
+        """Test removal of single citations like [1], [2]."""
         text = "This is a test[1] with citations[2] in it."
         expected = "This is a test with citations in it."
         result = remove_citations(text)
         self.assertEqual(result, expected)
 
     def test_remove_multiple_citations(self):
-        """Test removal of multiple citations like [1][2][3]"""
+        """Test removal of multiple citations like [1][2][3]."""
         text = "This has multiple[1][2] citations[3][4][5] here."
         expected = "This has multiple citations here."
         result = remove_citations(text)
         self.assertEqual(result, expected)
 
     def test_remove_citation_sections(self):
-        """Test removal of citation sections at bottom"""
+        """Test removal of citation sections at bottom."""
         text = """This is the main content.
 
 More content here.
@@ -45,14 +46,14 @@ More content here."""
         self.assertEqual(result.strip(), expected.strip())
 
     def test_remove_perplexity_branding(self):
-        """Test removal of Perplexity branding text"""
+        """Test removal of Perplexity branding text."""
         text = "Great content here. Powered by Perplexity. Ask Perplexity for more."
         expected = "Great content here. "
         result = remove_perplexity_branding(text)
         self.assertEqual(result, expected)
 
     def test_clean_markdown_full(self):
-        """Test full cleaning process"""
+        """Test full cleaning process."""
         text = """# Title
 
 This is content[1] with citations[2][3].
@@ -75,7 +76,7 @@ More content here."""
         self.assertEqual(result.strip(), expected.strip())
 
     def test_preserve_markdown_formatting(self):
-        """Test that markdown formatting is preserved"""
+        """Test that markdown formatting is preserved."""
         text = """# Header
 
 **Bold text**[1] and *italic text*[2].
